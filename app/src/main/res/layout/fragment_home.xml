@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F2F2"
+        android:padding="8dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context=".fragment.HomeFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/random_cardView"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="10dp"
+            android:layout_height="230dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/random_img"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_marginTop="200dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="16sp"
+                    android:text="Bigos"
+                    android:textColor="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </FrameLayout>
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/get_meal_by"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+              android:paddingTop="5dp"
+                android:id="@+id/fistletter_btn"
+                android:background="@drawable/btn_background_colors"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:textColor="#9C27B0"
+                android:text="@string/first_letter"
+                android:textSize="10sp"
+                android:drawableTop="@drawable/ic_filter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/country_btn"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintHorizontal_chainStyle="spread"/>
+            <Button
+                android:id="@+id/country_btn"
+                android:textSize="10sp"
+               android:paddingTop="5dp"
+                android:background="@drawable/btn_background_colors"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:text="Country"
+                android:textColor="#9C27B0"
+                android:drawableTop="@drawable/ic_world"
+                app:layout_constraintLeft_toRightOf="@id/fistletter_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ingredient_btn"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <Button
+                android:paddingTop="5dp"
+                android:id="@+id/ingredient_btn"
+                android:background="@drawable/btn_background_colors"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:text="Ingredient"
+                android:textColor="#9C27B0"
+                android:textSize="10sp"
+                android:drawableTop="@drawable/ic_grocery"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/country_btn"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Categories"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_"
+            android:layout_width="match_parent"
+            android:minHeight="300dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
