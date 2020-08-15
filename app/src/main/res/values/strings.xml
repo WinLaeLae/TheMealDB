@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TheMealDB</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_meal_by">Get Meal By</string>
+    <string name="first_letter">First Letter</string>
 
 </resources>
