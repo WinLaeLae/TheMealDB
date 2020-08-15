@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="mm.com.fairway.themealdb.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailMealFragment"
+            app:destination="@id/detailMealFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_getMealFragment"
+            app:destination="@id/getMealFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryListFragment"
+            app:destination="@id/categoryListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMealFragment"
+        android:name="mm.com.fairway.themealdb.fragment.DetailMealFragment"
+        android:label="fragment_detail_meal"
+        tools:layout="@layout/fragment_detail_meal" >
+        <argument
+            android:name="randomId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/getMealFragment"
+        android:name="mm.com.fairway.themealdb.fragment.GetMealFragment"
+        android:label="fragment_get_meal"
+        tools:layout="@layout/fragment_get_meal" />
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="mm.com.fairway.themealdb.fragment.CategoryListFragment"
+        android:label="fragment_category_list"
+        tools:layout="@layout/fragment_category_list" >
+        <argument
+            android:name="strCategory"
+            app:argType="string" />
+    </fragment>
+</navigation>
