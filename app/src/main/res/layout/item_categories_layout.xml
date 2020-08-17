@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:layout_margin="20dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="10dp"
-    android:layout_width="125dp"
-    android:layout_height="125dp"
+    android:layout_width="100dp"
+    android:layout_height="110dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -11,14 +11,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/category_img"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="80dp"/>
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/categoryName_txt"
             android:textSize="10sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:text="Beef"
             android:gravity="center"
