@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_letterGetFoodFragment"
+            app:destination="@id/letterGetFoodFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailMealFragment"
@@ -33,7 +36,11 @@
         android:id="@+id/getMealFragment"
         android:name="mm.com.fairway.themealdb.fragment.GetMealFragment"
         android:label="fragment_get_meal"
-        tools:layout="@layout/fragment_get_meal" />
+        tools:layout="@layout/fragment_get_meal" >
+        <argument
+            android:name="letter"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
         android:name="mm.com.fairway.themealdb.fragment.CategoryListFragment"
@@ -42,5 +49,14 @@
         <argument
             android:name="strCategory"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/letterGetFoodFragment"
+        android:name="mm.com.fairway.themealdb.fragment.LetterGetFoodFragment"
+        android:label="fragment_letter_get_food"
+        tools:layout="@layout/fragment_letter_get_food" >
+        <action
+            android:id="@+id/action_letterGetFoodFragment_to_detailMealFragment"
+            app:destination="@id/detailMealFragment" />
     </fragment>
 </navigation>
