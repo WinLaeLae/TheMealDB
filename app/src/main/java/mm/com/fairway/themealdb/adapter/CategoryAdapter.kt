@@ -17,6 +17,9 @@ class CategoryAdapter(var categorylist: ArrayList<Category> = ArrayList()) :
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         lateinit var category: Category
+        init {
+            itemView.setOnClickListener(this)// first run this statement  , need to call
+        }
         fun bind(category: Category) {
             this.category = category
             itemView.categoryName_txt.text = category.strCategory

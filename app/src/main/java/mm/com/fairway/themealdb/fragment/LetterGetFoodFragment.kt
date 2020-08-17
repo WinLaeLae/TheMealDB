@@ -25,8 +25,8 @@ import mm.com.fairway.themealdb.viewModel.LetterViewModel
 class LetterGetFoodFragment : Fragment(), LetterAdapter.ClickListener{
     lateinit var letterAdapter: LetterAdapter
     var letterViewModel = LetterViewModel()
- lateinit var firstLetter: String
-
+// lateinit var firstLetter: String
+var firstLetter: String = "b"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,28 +39,35 @@ class LetterGetFoodFragment : Fragment(), LetterAdapter.ClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         letterAdapter = LetterAdapter()
-        letterAdapter.setOnClickListener(this)
+
         recyclerview_Letter.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = letterAdapter
         }
         letterViewModel = ViewModelProvider(this).get(LetterViewModel::class.java)
-        val spinner= letterSpinner
+    //    val spinner= letterSpinner
         val alpha = R.array.letter
         Log.d("letter",alpha.toString())
-        if (spinner!= null){
-            val adapter= ArrayAdapter(activity?.applicationContext,alpha,android.R.layout.simple_spinner_item)
-            spinner.adapter = adapter
-
-        }
+//        if (spinner!= null){
+//            val adapter= ArrayAdapter(activity?.applicationContext,alpha,android.R.layout.simple_spinner_item)
+//            spinner.adapter = adapter
+//
+//        }
 
         observeLetter()
-       // letterViewModel.setLoadLetterResult(firstLetter)
+
+        letterAdapter.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        letterViewModel.setLoadLetterResult(firstLetter)
     }
 
     override fun onClick(meal: Meal) {
+
         var action =
-            LetterGetFoodFragmentDirections.actionLetterGetFoodFragmentToDetailMealFragment(meal.idMeal.toInt())
+            LetterGetFoodFragmentDirections.actionLetterGetFoodFragmentToDetailMealFragment(meal.idMeal)
         findNavController().navigate(action)
     }
 

@@ -6,7 +6,7 @@
     android:paddingTop="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.LetterGetFoodFragment">
-    <Spinner
+      <Spinner
         android:id="@+id/letterSpinner"
         android:contextClickable="true"
         android:layout_width="match_parent"

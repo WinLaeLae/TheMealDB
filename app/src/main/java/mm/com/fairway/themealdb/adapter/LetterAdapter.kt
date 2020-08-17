@@ -15,6 +15,9 @@ class LetterAdapter(var mealList: ArrayList<Meal> = ArrayList()):RecyclerView.Ad
     var mClickListener: ClickListener? = null
   inner  class  LetterViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview),View.OnClickListener{
       lateinit var meal:Meal
+      init {
+          itemView.setOnClickListener(this)// first run this statement  , need to call
+      }
         fun bind(meal: Meal){
             this.meal= meal
             itemView.letter_mealNametxt.text= meal.strMeal

@@ -24,7 +24,7 @@ class HomeFragment : Fragment(), CategoryAdapter.ClickListener {
     lateinit var categoryAdapter: CategoryAdapter
     var categoryViewModel = CategoryViewModel()
     var randomViewModel = RandomViewModel()
-     var randomMealID:Int = 0
+    var randomMealID: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,21 +39,25 @@ class HomeFragment : Fragment(), CategoryAdapter.ClickListener {
 //create viewmodel object
         categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
         randomViewModel = ViewModelProvider(this).get(RandomViewModel::class.java)
-        categoryAdapter.setOnClickListener(this)
         recyclerview_category.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = categoryAdapter
         }
         random_cardView.setOnClickListener {
-            var action = HomeFragmentDirections.actionHomeFragmentToDetailMealFragment(randomMealID)
+            var action =
+                HomeFragmentDirections.actionHomeFragmentToDetailMealFragment(randomMealID.toString())
             findNavController().navigate(action)
         }
         fistletter_btn.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_letterGetFoodFragment)
         }
         country_btn.setOnClickListener {
-
+            findNavController().navigate(R.id.action_homeFragment_to_countryFragment)
         }
+        ingredient_btn.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_ingredientFragment)
+        }
+        categoryAdapter.setOnClickListener(this)
 
 //        recyclerview_category.setOnClickListener() {
 //            categoryAdapter.setOnClickListener(this)
@@ -72,8 +76,8 @@ class HomeFragment : Fragment(), CategoryAdapter.ClickListener {
     fun observeRandom() {
         randomViewModel.getLoadRandom()
             .observe(viewLifecycleOwner, Observer<Random> { random ->
-                randomMealID=random.meals[0].idMeal.toInt()
-                Log.d("RandomMealID>>>>",randomMealID.toString())
+                randomMealID = random.meals[0].idMeal
+                Log.d("RandomMealID>>>>", randomMealID.toString())
                 random_mealNametxt.text = random.meals[0].strMeal
                 Picasso.get().load(random.meals[0].strMealThumb).into(random_img)
             })

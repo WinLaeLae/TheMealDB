@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.CountryFragment">
+    tools:context=".fragment.IngredientFragment">
 
     <Spinner
-        android:id="@+id/countrySpinner"
+        android:id="@+id/letterSpinner"
         android:contextClickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/letter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,8 +22,9 @@
         android:layout_width="match_parent"
         android:textColor="#000000"
         android:gravity="center"
+        android:text="hjghgfghjnmk,l,"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/countrySpinner"
+        app:layout_constraintTop_toBottomOf="@id/letterSpinner"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/frameContainer"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -37,9 +37,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_Country"
+            android:id="@+id/recyclerview_Ingredient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

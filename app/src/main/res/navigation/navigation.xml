@@ -14,14 +14,17 @@
             android:id="@+id/action_homeFragment_to_detailMealFragment"
             app:destination="@id/detailMealFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_getMealFragment"
-            app:destination="@id/getMealFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
         <action
             android:id="@+id/action_homeFragment_to_letterGetFoodFragment"
             app:destination="@id/letterGetFoodFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_countryFragment"
+            app:destination="@id/countryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ingredientFragment"
+            app:destination="@id/ingredientFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailMealFragment"
@@ -30,15 +33,6 @@
         tools:layout="@layout/fragment_detail_meal" >
         <argument
             android:name="randomId"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/getMealFragment"
-        android:name="mm.com.fairway.themealdb.fragment.GetMealFragment"
-        android:label="fragment_get_meal"
-        tools:layout="@layout/fragment_get_meal" >
-        <argument
-            android:name="letter"
             app:argType="string" />
     </fragment>
     <fragment
@@ -49,6 +43,9 @@
         <argument
             android:name="strCategory"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categoryListFragment_to_detailMealFragment"
+            app:destination="@id/detailMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/letterGetFoodFragment"
@@ -57,6 +54,24 @@
         tools:layout="@layout/fragment_letter_get_food" >
         <action
             android:id="@+id/action_letterGetFoodFragment_to_detailMealFragment"
+            app:destination="@id/detailMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryFragment"
+        android:name="mm.com.fairway.themealdb.fragment.CountryFragment"
+        android:label="fragment_country"
+        tools:layout="@layout/fragment_country" >
+        <action
+            android:id="@+id/action_countryFragment_to_detailMealFragment"
+            app:destination="@id/detailMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientFragment"
+        android:name="mm.com.fairway.themealdb.fragment.IngredientFragment"
+        android:label="fragment_ingredient"
+        tools:layout="@layout/fragment_ingredient" >
+        <action
+            android:id="@+id/action_ingredientFragment_to_detailMealFragment"
             app:destination="@id/detailMealFragment" />
     </fragment>
 </navigation>
