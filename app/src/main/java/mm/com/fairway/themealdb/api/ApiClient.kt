@@ -1,5 +1,9 @@
 package mm.com.fairway.themealdb.api
 
+import mm.com.fairway.themealdb.model.categories.Categories
+import mm.com.fairway.themealdb.model.countryMeals.CountryMeals
+import mm.com.fairway.themealdb.model.firstLetter.Letter
+import mm.com.fairway.themealdb.model.ingredientFilter.IngredientList
 import mm.com.fairway.themealdb.model.random.Random
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -18,4 +22,16 @@ val apiInterface : MealsApiInterface
     fun getMealRandom():Call<Random>{
         return apiInterface.getRandom()
     }
+    fun getCategories():Call<Categories>{
+        return apiInterface.getCategories()
+    }
+    fun getLetterMealList(latter:String):Call<Letter>{
+        return apiInterface.getLetterMealList(latter)
+    }
+    fun getCountryMeal(countryName: String):Call<CountryMeals>{
+        return apiInterface.getCountryMealsList(countryName)
+    }
+fun getIngredientMeal(ingredientName:String):Call<IngredientList>{
+    return  apiInterface.getIngredientList(ingredientName)
+}
 }
