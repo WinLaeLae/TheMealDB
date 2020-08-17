@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_country.*
 import mm.com.fairway.themealdb.R
@@ -53,7 +54,7 @@ observeCountry()
     }
     override fun onClick(meal: Meal) {
        var action= CountryFragmentDirections.actionCountryFragmentToDetailMealFragment(meal.idMeal)
-
+findNavController().navigate(action)
     }
 
 }
