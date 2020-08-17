@@ -95,11 +95,8 @@ class HomeFragment : Fragment(), CategoryAdapter.ClickListener {
 
     override fun onClick(category: Category) {
         Log.d("CategoryList>>>>>", category.strCategory)
-        var action =
-            HomeFragmentDirections.actionHomeFragmentToCategoryListFragment(category.strCategory)
+        var action =HomeFragmentDirections.actionHomeFragmentToCategoryListFragment(category.strCategory)
         findNavController().navigate(action)
 
     }
-
-
 }

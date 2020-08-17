@@ -5,30 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.meal.model.categorySearch.Meal
+import com.example.meal.model.categorySearch.SearchByCategory
+import kotlinx.android.synthetic.main.fragment_category_list.*
 import mm.com.fairway.themealdb.R
+import mm.com.fairway.themealdb.adapter.CategorySearchAdapter
+import mm.com.fairway.themealdb.viewModel.CategorySearch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CategoryListFragment : Fragment(), CategorySearchAdapter.ClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CategoryListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CategoryListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var categoriesViewModel :CategorySearch
+    lateinit var  categoryAdapter : CategorySearchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +29,44 @@ class CategoryListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_category_list, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CategoryListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CategoryListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        categoryAdapter = CategorySearchAdapter()
+
+        var item =arguments?.let {
+            CategoryListFragmentArgs.fromBundle(it)
+        }
+        var categoryName= item?.strCategory
+        categoriesViewModel=ViewModelProvider(this).get(CategorySearch::class.java)
+
+        recyclerSearchCategory.apply {
+            layoutManager= GridLayoutManager(context,2)
+            adapter=categoryAdapter
+        }
+        categoryAdapter.setOnClickListener(this)
+        categoriesViewModel.loadSearchCategory(categoryName!!)
+        observeViewModel()
+        textCategoryTitle.text=categoryName
+        //activity?.actionBar?.title  = categoryName
+
+        imgCateSearch.setOnClickListener {
+            var action = CategoryListFragmentDirections.actionCategoryListFragmentToHomeFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    fun observeViewModel()
+    {
+        categoriesViewModel.getResult().observe(
+            viewLifecycleOwner, Observer <SearchByCategory>{ categories->
+                categoryAdapter.updateResult(categories.meals)
             }
+        )
+    }
+
+    override fun onClick(meal: Meal) {
+        var action = CategoryListFragmentDirections.actionCategoryListFragmentToDetailMealFragment(meal.idMeal)
+        findNavController().navigate(action)
     }
 }
