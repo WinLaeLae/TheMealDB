@@ -1,5 +1,6 @@
 package mm.com.fairway.themealdb.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,11 +23,13 @@ import mm.com.fairway.themealdb.model.firstLetter.Meal
 import mm.com.fairway.themealdb.viewModel.LetterViewModel
 
 
-class LetterGetFoodFragment : Fragment(), LetterAdapter.ClickListener{
+class LetterGetFoodFragment : Fragment(), LetterAdapter.ClickListener,
+    AdapterView.OnItemSelectedListener {
     lateinit var letterAdapter: LetterAdapter
     var letterViewModel = LetterViewModel()
-// lateinit var firstLetter: String
-var firstLetter: String = "b"
+
+    // lateinit var firstLetter: String
+   // var firstLetter: String = " "
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +39,7 @@ var firstLetter: String = "b"
         return inflater.inflate(R.layout.fragment_letter_get_food, container, false)
     }
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         letterAdapter = LetterAdapter()
@@ -45,24 +49,27 @@ var firstLetter: String = "b"
             adapter = letterAdapter
         }
         letterViewModel = ViewModelProvider(this).get(LetterViewModel::class.java)
-    //    val spinner= letterSpinner
+        //    val spinner= letterSpinner
         val alpha = R.array.letter
-        Log.d("letter",alpha.toString())
-//        if (spinner!= null){
-//            val adapter= ArrayAdapter(activity?.applicationContext,alpha,android.R.layout.simple_spinner_item)
-//            spinner.adapter = adapter
-//
-//        }
+        Log.d("letter", alpha.toString())
+        val spinnerAdapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.letter,
+            android.R.layout.simple_spinner_item
+        )
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        letterSpinner.adapter = spinnerAdapter
+        letterSpinner.onItemSelectedListener = this
 
         observeLetter()
 
         letterAdapter.setOnClickListener(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        letterViewModel.setLoadLetterResult(firstLetter)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        letterViewModel.setLoadLetterResult(firstLetter)
+//    }
 
     override fun onClick(meal: Meal) {
 
@@ -79,6 +86,17 @@ var firstLetter: String = "b"
                 )
                 Log.d("Letter>>", letter.meals.get(0).toString())
             })
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+      var  firstLetter = parent?.getItemAtPosition(position).toString()
+        letterViewModel.setLoadLetterResult(firstLetter)
+       // firstLetter= ""
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        choosetxt.text = "Plese choose a Letter!!! "
     }
 
 

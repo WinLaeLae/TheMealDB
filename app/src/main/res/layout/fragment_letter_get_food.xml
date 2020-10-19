@@ -22,7 +22,6 @@
         android:layout_width="match_parent"
         android:textColor="#000000"
         android:gravity="center"
-        android:text="hjghgfghjnmk,l,"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/letterSpinner"
         app:layout_constraintRight_toRightOf="parent"

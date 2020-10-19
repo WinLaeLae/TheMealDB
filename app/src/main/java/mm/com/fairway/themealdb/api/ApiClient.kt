@@ -3,9 +3,11 @@ package mm.com.fairway.themealdb.api
 import com.example.meal.model.Details.Details
 import com.example.meal.model.categorySearch.SearchByCategory
 import mm.com.fairway.themealdb.model.categories.Categories
+import mm.com.fairway.themealdb.model.country.Country
 import mm.com.fairway.themealdb.model.countryMeals.CountryMeals
 import mm.com.fairway.themealdb.model.firstLetter.Letter
 import mm.com.fairway.themealdb.model.ingredientFilter.IngredientList
+import mm.com.fairway.themealdb.model.ingredientList.IngredientsFoodList
 import mm.com.fairway.themealdb.model.random.Random
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -14,6 +16,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
     private val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
     val apiInterface: MealsApiInterface
+
+    companion object {
+        var list_php = "list"
+    }
 
     init {
         var retrofit = Retrofit.Builder()
@@ -44,14 +50,22 @@ class ApiClient {
     }
 
     fun getDetails(
-        i : String
-    ) : Call<Details>{
+        i: String
+    ): Call<Details> {
         return apiInterface.getDetails(i)
     }
 
-    fun getSearchCategory (
-        c :String
-    ) :Call<SearchByCategory>{
+    fun getSearchCategory(
+        c: String
+    ): Call<SearchByCategory> {
         return apiInterface.getSearchCategory(c)
     }
+
+    fun getArae(): Call<Country> {
+        return apiInterface.getArea(list_php)
+    }
+    fun getIngredientList():Call<IngredientsFoodList>{
+        return apiInterface.getIngredient(list_php)
+    }
+
 }

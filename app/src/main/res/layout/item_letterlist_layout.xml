@@ -13,11 +13,12 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/letter_Img"
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="150dp"/>
         <TextView
             android:id="@+id/letter_mealNametxt"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:text="Bigos"
             android:gravity="center"
             android:maxLines="2"

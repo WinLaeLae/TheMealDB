@@ -3,9 +3,11 @@ package mm.com.fairway.themealdb.api
 import com.example.meal.model.Details.Details
 import com.example.meal.model.categorySearch.SearchByCategory
 import mm.com.fairway.themealdb.model.categories.Categories
+import mm.com.fairway.themealdb.model.country.Country
 import mm.com.fairway.themealdb.model.countryMeals.CountryMeals
 import mm.com.fairway.themealdb.model.firstLetter.Letter
 import mm.com.fairway.themealdb.model.ingredientFilter.IngredientList
+import mm.com.fairway.themealdb.model.ingredientList.IngredientsFoodList
 import mm.com.fairway.themealdb.model.random.Random
 import retrofit2.Call
 import retrofit2.http.GET
@@ -44,4 +46,13 @@ interface MealsApiInterface {
         @Query("c") c :String
     ):Call<SearchByCategory>
 
+@GET("list.php")
+fun getArea(
+    @Query("a") a :String
+): Call<Country>
+
+    @GET("list.php")
+    fun getIngredient(
+        @Query("i") i :String
+    ): Call<IngredientsFoodList>
 }
